@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TemperatureMapper">
+  <resultMap id="BaseResultMap" type="entity.Temperature">
+    <id column="now" jdbcType="TIMESTAMP" javaType="java.util.Date" property="now" />
+    <result column="tem" jdbcType="VARCHAR" javaType="java.lang.String" property="tem" />
+    <result column="time" jdbcType="TIMESTAMP" javaType="java.util.Date" property="time" />
+    <result column="name" jdbcType="VARCHAR" javaType="java.lang.String" property="name" />
+    <result column="number" jdbcType="VARCHAR" javaType="java.lang.String" property="number" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    now, tem, time, name, number
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.util.Date" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from temperature
+    where now = #{now,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.util.Date">
+    delete from temperature
+    where now = #{now,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="entity.Temperature">
+    insert into temperature (now, tem, time, 
+      name, number)
+    values (#{now,jdbcType=TIMESTAMP}, #{tem,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.Temperature">
+    insert into temperature
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="now != null">
+        now,
+      </if>
+      <if test="tem != null">
+        tem,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="now != null">
+        #{now,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tem != null">
+        #{tem,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.Temperature">
+    update temperature
+    <set>
+      <if test="tem != null">
+        tem = #{tem,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where now = #{now,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.Temperature">
+    update temperature
+    set tem = #{tem,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR}
+    where now = #{now,jdbcType=TIMESTAMP}
+  </update>
+  <select id="queryByTime" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select * from temperature where  now  between #{arg0}  and  #{arg1} and number = #{arg2}
+  </select>
+</mapper>

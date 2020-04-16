@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Sudu40Mapper">
+  <resultMap id="BaseResultMap" type="entity.Sudu40">
+    <id column="now" jdbcType="TIMESTAMP" property="now" />
+    <result column="acc40" jdbcType="DOUBLE" property="acc40" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    now, acc40, time, number, name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.util.Date" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sudu40
+    where now = #{now,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.util.Date">
+    delete from sudu40
+    where now = #{now,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="entity.Sudu40">
+    insert into sudu40 (now, acc40, time, 
+      number, name)
+    values (#{now,jdbcType=TIMESTAMP}, #{acc40,jdbcType=DOUBLE}, #{time,jdbcType=TIMESTAMP}, 
+      #{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.Sudu40">
+    insert into sudu40
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="now != null">
+        now,
+      </if>
+      <if test="acc40 != null">
+        acc40,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="now != null">
+        #{now,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acc40 != null">
+        #{acc40,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.Sudu40">
+    update sudu40
+    <set>
+      <if test="acc40 != null">
+        acc40 = #{acc40,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where now = #{now,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.Sudu40">
+    update sudu40
+    set acc40 = #{acc40,jdbcType=DOUBLE},
+      time = #{time,jdbcType=TIMESTAMP},
+      number = #{number,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR}
+    where now = #{now,jdbcType=TIMESTAMP}
+  </update>
+  <select id="queryByTime" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select * from sudu40 where  now  between #{arg0}  and  #{arg1} and number = #{arg2}
+  </select>
+</mapper>

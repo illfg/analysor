@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.WeekcMapper">
+  <resultMap id="BaseResultMap" type="entity.Weekc">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="year" jdbcType="VARCHAR" property="year" />
+    <result column="week" jdbcType="INTEGER" property="week" />
+    <result column="month" jdbcType="INTEGER" property="month" />
+    <result column="day" jdbcType="VARCHAR" property="day" />
+    <result column="hum" jdbcType="VARCHAR" property="hum" />
+    <result column="acc40" jdbcType="DOUBLE" property="acc40" />
+    <result column="tem" jdbcType="VARCHAR" property="tem" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, year, week, month, day, hum, acc40, tem, number
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from weekc
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from weekc
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="entity.Weekc">
+    insert into weekc (id, year, week, 
+      month, day, hum, acc40, 
+      tem, number)
+    values (#{id,jdbcType=INTEGER}, #{year,jdbcType=VARCHAR}, #{week,jdbcType=INTEGER}, 
+      #{month,jdbcType=INTEGER}, #{day,jdbcType=VARCHAR}, #{hum,jdbcType=VARCHAR}, #{acc40,jdbcType=DOUBLE}, 
+      #{tem,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.Weekc">
+    insert into weekc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="year != null">
+        year,
+      </if>
+      <if test="week != null">
+        week,
+      </if>
+      <if test="month != null">
+        month,
+      </if>
+      <if test="day != null">
+        day,
+      </if>
+      <if test="hum != null">
+        hum,
+      </if>
+      <if test="acc40 != null">
+        acc40,
+      </if>
+      <if test="tem != null">
+        tem,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="week != null">
+        #{week,jdbcType=INTEGER},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="hum != null">
+        #{hum,jdbcType=VARCHAR},
+      </if>
+      <if test="acc40 != null">
+        #{acc40,jdbcType=DOUBLE},
+      </if>
+      <if test="tem != null">
+        #{tem,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.Weekc">
+    update weekc
+    <set>
+      <if test="year != null">
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="week != null">
+        week = #{week,jdbcType=INTEGER},
+      </if>
+      <if test="month != null">
+        month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="day != null">
+        day = #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="hum != null">
+        hum = #{hum,jdbcType=VARCHAR},
+      </if>
+      <if test="acc40 != null">
+        acc40 = #{acc40,jdbcType=DOUBLE},
+      </if>
+      <if test="tem != null">
+        tem = #{tem,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.Weekc">
+    update weekc
+    set year = #{year,jdbcType=VARCHAR},
+      week = #{week,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      day = #{day,jdbcType=VARCHAR},
+      hum = #{hum,jdbcType=VARCHAR},
+      acc40 = #{acc40,jdbcType=DOUBLE},
+      tem = #{tem,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryByYear" parameterType="java.lang.Object" resultMap="BaseResultMap">
+    select * from weekc where year = #{arg0} and number = #{arg1}
+  </select>
+  <select id="queryByMonth" parameterType="java.lang.Object" resultMap="BaseResultMap">
+    select * from weekc where year = #{arg0} and month = #{arg1} and number = #{arg2}
+  </select>
+  <select id="queryByWeek" parameterType="java.lang.Object" resultMap="BaseResultMap">
+    select * from weekc where year = #{arg0} and month = #{arg1} and week = #{arg2} and number = #{arg3}
+  </select>
+</mapper>
