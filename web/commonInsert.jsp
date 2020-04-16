@@ -14,58 +14,6 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <body>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="home.jsp">查询系统</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            <li class="dropdown" style="margin-left: 15%;position: absolute">
-                <a href="home.jsp" class="dropdown-toggle" data-toggle="dropdown">系统信息<strong class="caret"></strong></a>
-                <ul class="dropdown-menu">
-
-                    <li>
-                        <a href="login.jsp">登录</a>
-                    </li>
-                    <%--  <li class="divider">
-                      </li>--%>
-                    <li>
-                        <a href="signup.jsp">注册</a>
-                    </li>
-                </ul>
-            </li>
-            <li  style="margin-left: 25%;position: absolute">
-                <a href="accbyday.jsp">振动舒适度评价</a>
-            </li>
-            <li  style="margin-left: 35%;position: absolute">
-                <a href="tembyday.jsp">温度舒适度评价</a>
-            </li>
-            <li  style="margin-left: 45%;position: absolute">
-                <a href="humbyday.jsp">湿度舒适度评价</a>
-            </li>
-            <li  style="margin-left: 55%;position: absolute">
-                <a href="totalbyday.jsp">舒适度总评价</a>
-            </li>
-            <li class="dropdown active" style="margin-left: 65%;position: absolute">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">联系我们<strong class="caret"></strong></a>
-                <ul class="dropdown-menu">
-
-                    <li >
-                        <a href="contact.jsp">联系方式</a>
-                    </li>
-                    <%--  <li class="divider">
-                      </li>--%>
-                    <li>
-                        <a href="comment.jsp">在线留言</a>
-                    </li>
-
-                </ul>
-            </li>
-        </ul>
-    </div>
-
-</nav>
 <div style="width: 70%;margin-left: 15%">
     <h1 style="margin-top: 10%;text-align: center">管理员后台</h1>
     <ul style="margin-top: 25px" class="nav nav-tabs">
